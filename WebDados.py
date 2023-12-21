@@ -10,7 +10,8 @@ st.set_page_config(page_title='Minha Dashboard Interativa', layout='wide')
 @st.cache_data
 def importar_dados():
     # Use o caminho do arquivo fornecido
-    caminho_arquivo_csv = r'C:\Users\Rodrigo_df\OneDrive\Documentos\ProjetosVScode\Criptomoedadas.csv'
+    caminho_arquivo_csv = 'Criptomoedas.csv'
+
     # Importar o arquivo CSV para um DataFrame
     df = pd.read_csv(caminho_arquivo_csv)
     return df.copy()
