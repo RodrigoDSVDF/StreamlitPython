@@ -1,0 +1,8 @@
+streamlit
+ccxt
+pandas
+datetime
+plotly
+altair
+numpy
+scipy
