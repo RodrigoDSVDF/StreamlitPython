@@ -3,6 +3,7 @@ import ccxt
 import pandas as pd
 from datetime import datetime, timedelta
 import plotly.express as px
+import plotly.graph_objects as go
 
 
 
@@ -129,7 +130,7 @@ for cripto in criptomoedas:
         st.plotly_chart(fig)
 
         # Cria um gráfico de série temporal para visualizar os retornos diários em porcentagem
-        fig = px.line(df_selected_crypto, x='tempo', y='close', 
+        fig = px.line(df_selected_crypto, x='tempo', y='fechamento', 
                       labels={'close': 'Preço de Fechamento', 'tempo': 'Data'},
                       title=f'Preço de Fechamento ao Longo do Tempo - {cripto}')
         # Exibir o gráfico no Streamlit
