@@ -4,6 +4,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 import plotly.express as px
 
+
+
 # Defina o título da página
 st.set_page_config(page_title='Minha Dashboard Interativa', layout='wide')
 
@@ -99,13 +101,15 @@ Lembre-se, enquanto esta ferramenta fornece informações úteis, é importante 
 """)
 
  # Função para buscar dados da criptomoeda selecionada
-def fetch_crypto_data(symbol):
-    exchange = ccxt.binance()
-    data = exchange.fetch_ohlcv(f'{symbol}/USDT', '1d')
-    df = pd.DataFrame(data, columns=['tempo', 'open', 'high', 'low', 'close', 'volume'])
-    df['tempo'] = pd.to_datetime(df['tempo'], unit='ms')
-    df['Retornos Diários (%)'] = df['close'].pct_change() * 100
-    return df
+def fetch_crypto_data(df, moeda):
+    # Filtra o DataFrame para incluir apenas os dados da moeda desejada
+    df_selected_crypto = df[df['moeda'] == moeda].copy()
+    
+    # Calcula os retornos diários
+    df_selected_crypto['Retornos Diários (%)'] = df_selected_crypto['fechamento'].pct_change() * 100
+    
+    return df_selected_crypto
+
 
 # Lista das criptomoedas que você quer importar
 criptomoedas = ['BTC', 'ETH', 'ADA', 'BNB']
@@ -156,11 +160,6 @@ df_ADA['retorno_diario'] = df_ADA['fechamento'].pct_change()
 if escolha == 'Análise':
     st.subheader('Abaixo segue o gráfico de probabilidade de variação de preço para cada moeda')
 
-    import altair as alt
-    import numpy as np
-    from scipy.stats import norm
-    import matplotlib.pyplot as plt
-    import plotly.graph_objects as go
 
     df_BTC = df[df['moeda'] == 'BTC']
     df_ETH = df[df['moeda'] == 'ETH']
