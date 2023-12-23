@@ -117,7 +117,8 @@ criptomoedas = ['BTC', 'ETH', 'ADA', 'BNB']
 # Loop através de cada criptomoeda
 for cripto in criptomoedas:
     # Chame a função para obter os dados da criptomoeda selecionada
-    df_selected_crypto = fetch_crypto_data(cripto)
+    df_selected_crypto = fetch_crypto_data(df, cripto)
+
 
     if escolha == 'Visualização':
         # Cria um gráfico de barras para visualizar os retornos diários em porcentagem
