@@ -1,6 +1,7 @@
 streamlit
 pandas
 datetime
+import ccxt
 plotly
 altair
 numpy
